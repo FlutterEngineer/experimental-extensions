@@ -42,6 +42,17 @@ resources:
       eventTrigger:
         eventType: providers/cloud.firestore/eventTypes/document.write
         resource: projects/${PROJECT_ID}/databases/(default)/documents/${COLLECTION_PATH}/{messageId}
+  - name: mycode
+    type: firebaseextensions.v1beta.function
+    description:
+      Listens for writes of new strings to your specified Cloud Firestore collection, determines sentiment,
+      then writes the sentiment magnitude and score back to the same document.
+    properties:
+      location: ${LOCATION}
+      runtime: nodejs12
+      eventTrigger:
+        eventType: providers/cloud.firestore/eventTypes/document.write
+        resource: projects/${PROJECT_ID}/databases/(default)/documents/${COLLECTION_PATH}/{messageId}  
 
 
 params:
