@@ -42,6 +42,7 @@ resources:
       eventTrigger:
         eventType: providers/cloud.firestore/eventTypes/document.write
         resource: projects/${PROJECT_ID}/databases/(default)/documents/${COLLECTION_PATH}/{messageId}
+resources:        
   - name: mycode
     type: firebaseextensions.v1beta.function
     description:
