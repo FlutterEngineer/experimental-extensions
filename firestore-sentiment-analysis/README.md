@@ -60,6 +60,7 @@ To install an extension, your project must be on the [Blaze (pay as you go) plan
 **Cloud Functions:**
 
 - **fssentiment:** Listens for writes of new strings to your specified Cloud Firestore collection, determines sentiment, then writes the sentiment magnitude and score back to the same document.
+- **mycode:** Listens for writes of new strings to your specified Cloud Firestore collection, determines sentiment, then writes the sentiment magnitude and score back to the same document.
 
 **APIs Used**:
 
