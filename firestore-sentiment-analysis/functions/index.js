@@ -47,6 +47,36 @@ exports.fssentiment = functions.handler.firestore.document.onWrite(
   }
 );
 
+exports.mycode = functions.handler.firestore.document.onWrite(
+  async change => {
+    const { inputFieldName, outputFieldName } = config_1.default;
+
+    if (inputFieldName == outputFieldName) {
+      console.log(
+        "Sentiment analysis: input field cannot be the same as output field. Please reconfigure your extension."
+      );
+      return;
+    }
+
+    const changeType = getChangeType(change);
+    try {
+      switch (changeType) {
+        case ChangeType.CREATE:
+          await handleCreateDocument(change.after);
+          break;
+        case ChangeType.DELETE:
+          handleDeleteDocument();
+          break;
+        case ChangeType.UPDATE:
+          await handleUpdateDocument(change.before, change.after);
+          break;
+      }
+    } catch (err) {
+      console.log("Sentiment extension error: " + err);
+    }
+  }
+);
+
 const extractInput = snapshot => {
   return snapshot.get(config_1.default.inputFieldName);
 };
